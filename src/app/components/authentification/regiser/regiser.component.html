@@ -1,0 +1,42 @@
+<div class="body">
+  <div class="container">
+    <div class="center">
+      <h1>Register</h1>
+      <form [formGroup]="registerForm" (ngSubmit)="onSumbit()">
+        <div class="txt_field">
+          <input type="text" name="userName" formControlName="userName" placeholder="Username">
+        </div>
+        <div class="error-message"
+          *ngIf="(userName.hasError('required') || userName.hasError('pattern')) && ( userName?.dirty || userName?.touched )">
+          {{ userNameErrorMessage() }}
+        </div>
+        <div class="txt_field">
+          <input type="email" name="email" formControlName="email" placeholder="Email">
+        </div>
+        <div class="error-message"
+          *ngIf="(email.hasError('required') || email.hasError('pattern')) && (email?.dirty || email?.touched)">
+          {{ emailErrorMessage() }}
+        </div>
+        <div class="txt_field">
+          <input type="password" name="password" formControlName="password" placeholder="Password">
+        </div>
+        <div class="error-message"
+          *ngIf="(password.hasError('required') || password.hasError('min') || password.hasError('pattern')) && (password?.dirty || password?.touched)">
+          {{ passwordErrorMessage() }}
+        </div>
+        <div class="txt_field">
+          <input type="password" name="confirmPassword" formControlName="confirmPassword"
+            placeholder="Confirm Password">
+        </div>
+        <div class="error-message"
+          *ngIf="(confirmPassword.hasError('required') || confirmPassword.hasError('ConfirmPasswordValidator')) && (confirmPassword.dirty || confirmPassword.touched)">
+          {{ confirmPasswordErrorMessage() }}
+        </div>
+        <input name="submit" type="Submit" value="Sign Up">
+        <div class="link">
+          Have an Account ? <a routerLink="/login">Login Here</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
